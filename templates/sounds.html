@@ -1,0 +1,29 @@
+<!-- SoundsController -->
+<div class="controller" data-controller="sounds">
+	<section>
+		<header>
+			<h2>Sonidos</h2>
+		</header>
+
+		<div class="tools">
+			<a ui-sref="sound.create" class="btn is-small">Nuevo sonido</a>
+		</div>
+
+		<ul class="config-files">
+			<li ng-repeat="item in list">
+				<div class="item clearfix">
+					<div class="pull-left">
+						<i class="fa fa-file"></i>
+						{{ item.prettyName }}
+					</div>
+
+					<div class="pull-right">
+						<a ui-sref="sound.show({fileName: item.fileRoute})" title="Editar"><i class="fa fa-pencil"></i></a>
+						<a ui-sref="sound.duplicate({fileName: item.fileRoute})" title="Duplicar"><i class="fa fa-files-o"></i></a>
+						<a ng-click="remove( item.fileName )" title="Eliminar"><i class="fa fa-trash"></i></a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</section>
+</div>

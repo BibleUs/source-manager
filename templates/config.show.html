@@ -1,0 +1,28 @@
+<!-- ConfigShowController -->
+<div class="controller" data-controller="config.show">
+	<section>
+		<header>
+			<h2>{{ file.filePrettyName }}</h2>
+			<h5 class="subtitle">{{ file.filePath }}</h5>
+		</header>
+
+		<div class="columns">
+			<div class="group add-list column">
+				<label>Agregar:</label>
+				<input class="control" placeholder="Comando" ng-model="newCommand" />
+				<button type="button" class="is-success" ng-click="add()"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+			</div>
+
+			<div class="group save-button">
+				<button type="button" class="is-success" ng-click="save()">Guardar</button>
+			</div>
+		</div>
+
+		<ul class="config-files">
+			<li class="group command" ng-repeat="(key,item) in commands" data-key="{{ key }}">
+				<input class="control" ng-model="commands[key]" >
+				<button type="button" class="is-danger" ng-click="remove(key)"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
+			</li>
+		</ul>
+	</section>
+</div>

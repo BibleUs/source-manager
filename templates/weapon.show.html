@@ -1,0 +1,273 @@
+<!-- ConfigShowController -->
+<div class="controller" data-controller="weapon.show">
+	<section>
+		<header>
+			<h2>{{ weapon.weaponName }}</h2>
+			<h5 class="subtitle">{{ weapon.filePath }}</h5>
+		</header>
+
+		<div class="box-notification is-error" ng-class="{'visible': error.length > 0}">
+			{{ error }}
+		</div>
+
+		<!-- Nombre del archivo -->
+		<div style="display: none" ng-class="{'visible': creating == true}">
+			<section>
+				<div class="group">
+					<label>Identificación del arma:</label>
+					<input class="control" ng-model="fileName" ng-change="onNameUpdate()" />
+					<span class="hint">Nombre del archivo sin <strong>weapon_</strong> ni <strong>.txt</strong></span>
+				</div>
+			</section>
+		</div>
+
+		<form ng-submit="save()">
+			<!-- Principal -->
+			<section>
+				<header>
+					<h3>Prinicipal</h3>
+				</header>
+
+				<div class="columns">
+					<div class="column group">
+						<label>Nombre:</label>
+						<input class="control" ng-model="item.PrintName" />
+					</div>
+
+					<div class="column group">
+						<label>ViewModel:</label>
+						<input class="control" ng-model="item.ViewModel" />
+					</div>
+
+					<div class="column group">
+						<label>PlayerModel:</label>
+						<input class="control" ng-model="item.PlayerModel" />
+					</div>
+				</div>
+
+				<div class="columns">
+					<div class="column group">
+						<label>Daño:</label>
+						<input type="number" string-to-number class="control" ng-model="item.Damage" min="0" />
+					</div>
+
+					<div class="column group">
+						<label>Balas por disparo:</label>
+						<input type="number" string-to-number class="control" ng-model="item.Bullets" min="1" />
+					</div>
+
+					<div class="column group">
+						<label>Velocidad de disparo:</label>
+						<input class="control" ng-model="item.FireRate" />
+					</div>
+				</div>
+
+				<div class="columns">
+					<div class="column group">
+						<label>Distribución de las balas:</label>
+						<input class="control" ng-model="item.BulletSpread" />
+					</div>
+
+					<div class="column group">
+						<label>Distancia Máxima:</label>
+						<input class="control" ng-model="item.Distance" />
+					</div>
+				</div>
+
+				<div class="columns">
+					<div class="column group">
+						<label>En mano derecha:</label>
+						<select class="control" ng-model="item.BuiltRightHanded">
+							<option value="0">No</option>
+							<option value="1">Sí</option>
+						</select>
+					</div>
+
+					<div class="column group">
+						<label>AllowFlipping:</label>
+						<select class="control" ng-model="item.AllowFlipping">
+							<option value="0">No</option>
+							<option value="1">Sí</option>
+						</select>
+					</div>
+
+					<div class="column group">
+						<label>Cuerpo a cuerpo:</label>
+						<select class="control" ng-model="item.MeleeWeapon">
+							<option value="0">No</option>
+							<option value="1">Sí</option>
+						</select>
+					</div>
+				</div>
+			</section>
+
+			<!-- Munición -->
+			<section>
+				<header>
+					<h3>Munición</h3>
+				</header>
+
+				<div class="columns">
+					<div class="column group">
+						<label>Munición primaria:</label>
+						<input class="control" ng-model="item.PrimaryAmmo" />
+					</div>
+
+					<div class="column group">
+						<label>Munición secundaria:</label>
+						<input class="control" ng-model="item.SecondaryAmmo" />
+					</div>
+				</div>
+
+				<div class="columns">
+					<div class="column group">
+						<label>Balas de Clip primario:</label>
+						<input type="number" string-to-number class="control" ng-model="item.ClipSize" min="1" />
+					</div>
+
+					<div class="column group">
+						<label>Balas de Clip secundario:</label>
+						<input type="number" string-to-number class="control" ng-model="item.Clip2Size" min="0" />
+					</div>
+				</div>
+
+				<div class="columns">
+					<div class="column group">
+						<label>Balas de Clip primario (Al tomar el arma):</label>
+						<input type="number" string-to-number class="control" ng-model="item.DefaultClip" min="0" max="{{ item.ClipSize }}" />
+					</div>
+
+					<div class="column group">
+						<label>Balas de Clip secundario (Al tomar el arma):</label>
+						<input type="number" string-to-number class="control" ng-model="item.DefaultClip2" min="0" max="{{ item.Clip2Size }}" />
+					</div>
+				</div>
+			</section>
+
+			<!-- Otros -->
+			<section>
+				<header>
+					<h3>Otros</h3>
+				</header>
+
+				<div class="columns">
+					<div class="column group">
+						<label>Cubículo:</label>
+						<input type="number" string-to-number class="control" ng-model="item.Bucket" min="0" max="10" />
+					</div>
+
+					<div class="column group">
+						<label>Lugar de Cubículo:</label>
+						<input type="number" string-to-number class="control" ng-model="item.BucketPosition" min="0" max="10" />
+					</div>
+				</div>
+
+				<div class="columns">
+					<div class="column group">
+						<label>Prioridad:</label>
+						<input type="number" string-to-number class="control" ng-model="item.Weight" min="0" max="999" />
+					</div>
+
+					<div class="column group">
+						<label>Vibración:</label>
+						<select class="control" ng-model="item.Rumble">
+							<option value="-1">Ninguno</option>
+							<option ng-repeat="(key, value) in rumblesList" value="{{ key }}">{{ value }}</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="columns">
+					<div class="column group">
+						<label>PlayerAnimationExtension:</label>
+						<input class="control" ng-model="item.PlayerAnimationExtension" />
+					</div>
+
+					<div class="column group">
+						<label>FOV:</label>
+						<input type="number" string-to-number class="control" ng-model="item.FOV" min="60" />
+					</div>
+				</div>
+			</section>
+
+			<!-- Sonidos -->
+			<section>
+				<header>
+					<h3>Sonidos</h3>
+				</header>
+
+				<div class="columns">
+					<div class="column group">
+						<label>EMPTY:</label>
+						<input class="control" ng-model="item.SoundData.empty" />
+					</div>
+
+					<div class="column group">
+						<label>SINGLE SHOT:</label>
+						<input class="control" ng-model="item.SoundData.single_shot" />
+					</div>
+
+					<div class="column group">
+						<label>DOUBLE SHOT:</label>
+						<input class="control" ng-model="item.SoundData.double_shot" />
+					</div>
+				</div>
+
+				<div class="columns">
+					<div class="column group">
+						<label>BURST:</label>
+						<input class="control" ng-model="item.SoundData.burst" />
+					</div>
+
+					<div class="column group">
+						<label>RELOAD:</label>
+						<input class="control" ng-model="item.SoundData.reload" />
+					</div>
+
+					<div class="column group">
+						<label>FAST RELOAD:</label>
+						<input class="control" ng-model="item.SoundData.fastreload" />
+					</div>
+				</div>
+
+				<div class="columns">
+					<div class="column group">
+						<label>MELEE HIT:</label>
+						<input class="control" ng-model="item.SoundData.melee_hit" />
+					</div>
+
+					<div class="column group">
+						<label>MELEE HIT WORLD:</label>
+						<input class="control" ng-model="item.SoundData.melee_hit_world" />
+					</div>
+
+					<div class="column group">
+						<label>MELEE MISS:</label>
+						<input class="control" ng-model="item.SoundData.melee_miss" />
+					</div>
+				</div>
+
+				<div class="columns">
+					<div class="column group">
+						<label>SPECIAL 1:</label>
+						<input class="control" ng-model="item.SoundData.special1" />
+					</div>
+
+					<div class="column group">
+						<label>SPECIAL 2:</label>
+						<input class="control" ng-model="item.SoundData.special2" />
+					</div>
+
+					<div class="column group">
+						<label>SPECIAL 3:</label>
+						<input class="control" ng-model="item.SoundData.special3" />
+					</div>
+				</div>
+			</section>
+
+			<div class="group">
+				<button class="is-success">Guardar</button>
+			</div>
+		</form>
+	</section>
+</div>

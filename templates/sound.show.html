@@ -1,0 +1,156 @@
+<!-- SoundShowController -->
+<div class="controller" data-controller="sound.show">
+	<section>
+		<header>
+			<h2><i class="fa fa-music"></i> Sonidos de: {{ file.prettyName }}</h2>
+			<h5 class="subtitle">{{ file.filePath }}</h5>
+		</header>
+
+		<div class="box-notification is-error" ng-class="{'visible': error.length > 0}">
+			{{ error }}
+		</div>
+
+		<!-- Nombre del archivo -->
+		<div style="display: none" ng-class="{'visible': creating == true}">
+			<section>
+				<div class="group">
+					<label>Nombre del archivo:</label>
+					<input class="control" ng-model="fileName" ng-change="onNameUpdate()" />
+					<span class="hint">Nombre del archivo sin <strong>.txt</strong></span>
+				</div>
+			</section>
+		</div>
+
+		<form ng-submit="save()">
+			<div class="group">
+				<button class="is-success">Guardar</button>
+			</div>
+
+			<!-- Sonido -->
+			<section ng-repeat="(sndName, sndData) in item">
+				<header>
+					<h3>{{ sndName }}</h3>
+				</header>
+
+				<div class="columns">
+					<div class="column group">
+						<label>Nombre:</label>
+						<input class="control" ng-model="sndName" ng-change="sndData.name = sndName" />
+					</div>
+
+					<div class="column group">
+						<label>Volumen:</label>
+						<input class="control" ng-model="sndData.volume" />
+					</div>
+
+					<div class="column group">
+						<label>Sonido:</label>
+						<input class="control" ng-model="sndData.wave" placeholder="Escriba o arrastre el archivo" data-drag-copy />
+					</div>
+				</div>
+
+				<div class="columns">
+					<div class="column group">
+						<label>Canal:</label>
+						<select class="control" ng-model="sndData.channel">
+							<option value="{{ key }}" ng-repeat="(key,value) in channelList">{{ value }}</option>
+						</select>
+					</div>
+
+					<div class="column group">
+						<label>Nivel:</label>
+						<select class="control" ng-model="sndData.soundlevel">
+							<option value="{{ key }}" ng-repeat="(key,value) in levelList">{{ value }}</option>
+						</select>
+					</div>
+
+					<div class="column group">
+						<label>Pitch:</label>
+						<input class="control" ng-model="sndData.pitch" />
+					</div>
+				</div>
+
+				<details>
+					<summary>Sonidos al azar</summary>
+
+					<ul class="config-files">
+						<li class="group" ng-repeat="(key,sound) in sndData.rndwave.wave" data-key="{{ key }}">
+							<input class="control" ng-model="sound" data-drag-copy />
+							<button type="button" title="Ver en carpeta" class="is-success" ng-click="openFolder(key, sndName)"><i class="fa fa-folder-open-o" aria-hidden="true"></i></button>
+							<button type="button" title="Eliminar" class="is-danger" ng-click="removeRndSound(key, sndName)"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
+						</li>
+
+						<li class="group">
+							<input class="control new-sound" placeholder="Escriba o arrastre el/los archivo(s)" ng-model="newRndSound" data-drag-copy>
+							<button type="button" title="Agregar" class="is-success" ng-click="addRndSound(newRndSound, sndName)"><i class="fa fa-plus" aria-hidden="true"></i></button>
+						</li>
+					</ul>
+				</details>
+
+				<div class="group">
+					<button type="button" ng-click="play(sndData)"><i class="fa fa-play"></i> Vista previa</button>
+					<button type="button" class="is-danger" ng-click="removeSound(sndName)"><i class="fa fa-trash"></i> Eliminar</button>
+				</div>
+			</section>
+
+			<!-- Nuevo Sonido -->
+			<section>
+				<header>
+					<h3>{{ newSound.name }}</h3>
+				</header>
+
+				<div class="columns">
+					<div class="column group">
+						<label>Nombre:</label>
+						<input class="control" ng-model="newSound.name" />
+					</div>
+
+					<div class="column group">
+						<label>Volumen:</label>
+						<input class="control" ng-model="newSound.volume" />
+					</div>
+
+					<div class="column group">
+						<label>Sonido:</label>
+						<input class="control" ng-model="newSound.wave" placeholder="Escriba o arrastre el archivo" data-drag-copy />
+					</div>
+				</div>
+
+				<div class="columns">
+					<div class="column group">
+						<label>Canal:</label>
+						<select class="control" ng-model="newSound.channel">
+							<option value="{{ key }}" ng-repeat="(key,value) in channelList">{{ value }}</option>
+						</select>
+					</div>
+
+					<div class="column group">
+						<label>Nivel:</label>
+						<select class="control" ng-model="newSound.soundlevel">
+							<option value="{{ key }}" ng-repeat="(key,value) in levelList">{{ value }}</option>
+						</select>
+					</div>
+
+					<div class="column group">
+						<label>Pitch:</label>
+						<input class="control" ng-model="newSound.pitch" />
+					</div>
+				</div>
+
+				<details>
+					<summary>Sonidos al azar</summary>
+
+					<p>Para agregar sonidos al azar primero debe agregar este script de sonido.</p>
+				</details>
+
+				<div class="group">
+					<button type="button" ng-click="addSound()"><i class="fa fa-add"></i> Agregar</button>
+				</div>
+			</section>
+
+			<div class="group">
+				<button class="is-success">Guardar</button>
+			</div>
+		</form>
+	</section>
+</div>

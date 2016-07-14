@@ -1,0 +1,13 @@
+{
+	"name": "source-manager",
+	"version": "1.0.0",
+	"description": "Permite controlar los archivos de un Juego desarrollado con Source Engine",
+	"author": "Ivan Bravo Bravo",
+	"main": "main.js",
+	"scripts": {
+		"start": "./node_modules/.bin/electron ."
+	},
+	"devDependencies": {
+    	"electron-prebuilt": "^1.2.0"
+ 	}
+}

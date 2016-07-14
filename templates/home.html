@@ -1,0 +1,44 @@
+<!-- HomeController -->
+<div class="controller" data-controller="home">
+	<section>
+		<div class="box-notification is-error" ng-class="{'visible': options.gameDirectory == undefined || options.engineDirectory == undefined}">
+			La configuración es inválida, por favor revise las <a ui-sref="options">opciones</a>.
+		</div>
+	</section>
+
+	<div class="launch-btns">
+		<div class="columns">
+			<div class="column button is-success" ng-click="open('hammer')">
+				<i class="fa fa-building" aria-hidden="true"></i>
+				<span class="title">Hammer Editor</span>
+			</div>
+
+			<div class="column button is-warning" ng-click="open('viewer')">
+				<i class="fa fa-eye" aria-hidden="true"></i>
+				<span class="title">Model Viewer</span>
+			</div>
+
+			<div class="column button is-danger" ng-click="open('sdk')">
+				<i class="fa fa-cogs" aria-hidden="true"></i>
+				<span class="title">Source SDK</span>
+			</div>
+		</div>
+		<br>
+		<div class="columns">
+			<div class="column button is-blue" ng-click="open('game')">
+				<i class="fa fa-gamepad" aria-hidden="true"></i>
+				<span class="title">Jugar</span>
+			</div>
+
+			<div class="column button is-purple" ng-click="open('code')">
+				<i class="fa fa-code" aria-hidden="true"></i>
+				<span class="title">Visual Studio</span>
+			</div>
+
+			<div class="column button" ui-sref="options">
+				<i class="fa fa-edit" aria-hidden="true"></i>
+				<span class="title">Opciones</span>
+			</div>
+		</div>
+	</div>
+</div>

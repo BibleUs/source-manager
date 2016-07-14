@@ -1,0 +1,29 @@
+<!-- WeaponsController -->
+<div class="controller" data-controller="weapons">
+	<section>
+		<header>
+			<h2>Armas</h2>
+		</header>
+
+		<div class="tools">
+			<a ui-sref="weapon_create" class="btn is-small">Nueva arma</a>
+		</div>
+
+		<ul class="config-files">
+			<li ng-repeat="item in weapons">
+				<div class="item clearfix">
+					<div class="pull-left">
+						<i class="fa fa-file"></i>
+						{{ item.weaponName }}
+					</div>
+
+					<div class="pull-right">
+						<a ui-sref="weapon_show({fileName: item.fileName})" title="Editar"><i class="fa fa-pencil"></i></a>
+						<a ui-sref="weapon_duplicate({fileName: item.fileName})" title="Duplicar"><i class="fa fa-files-o"></i></a>
+						<a ng-click="remove( item.fileName )" title="Eliminar"><i class="fa fa-trash"></i></a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</section>
+</div>

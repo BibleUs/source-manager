@@ -1,0 +1,15 @@
+@mixin button( $color ) {
+	background: $color;
+	border: 1px solid lighten( $color, 10% );
+	border-bottom: 3px solid darken( $color, 10% );
+
+	&:hover {
+		background: darken( $color, 5% );
+	}
+}
+
+@mixin box-color( $color ) {
+	background: $color;
+	border-color: lighten( $color, 10% );
+	border-bottom-color: darken( $color, 20% );
+}

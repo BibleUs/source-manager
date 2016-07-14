@@ -1,0 +1,17 @@
+<!-- ConfigController -->
+<div class="controller" data-controller="config">
+	<section>
+		<header>
+			<h2>Archivos de configuración</h2>
+		</header>
+
+		<ul class="config-files">
+			<li ng-repeat="item in files">
+				<a ui-sref="config_show({fileName: item.path})" class="item">
+					<i class="fa fa-file"></i>
+					{{ item.name }}
+				</a>
+			</li>
+		</ul>
+	</section>
+</div>

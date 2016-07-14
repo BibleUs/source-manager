@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="SourceManager">
+<head>
+	<meta charset="utf-8">
+	<title>Source Manager</title>
+
+	<!-- StyleSheets-->
+	<link rel="stylesheet" href="assets/vendor/normalize-css/normalize.css">
+	<link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/vendor/sweetalert2/dist/sweetalert2.min.css">
+
+	<link rel="stylesheet" href="assets/css/main.css">
+
+	<!-- JavaScript -->
+	<script src="assets/vendor/angular/angular.min.js"></script>
+	<script src="assets/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+	<script src="assets/vendor/jquery/dist/jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
+	<script src="assets/vendor/moment/min/moment-with-locales.min.js"></script>
+	<script src="assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+
+	<script src="assets/js/vdf.js"></script>
+	<script src="assets/js/utils.js"></script>
+	
+	<!-- JavScript: Módulos -->
+	<script src="assets/js/main.js"></script>
+
+	<script src="assets/js/modules/gamefile.js"></script>
+	<script src="assets/js/modules/options.js"></script>
+	<script src="assets/js/modules/gameinfo.js"></script>
+	<script src="assets/js/modules/config.js"></script>
+	<script src="assets/js/modules/weapon.js"></script>
+	<script src="assets/js/modules/sound.js"></script>
+
+	<script src="assets/js/mvc.js"></script>
+</head>
+<body>
+	<div class="window-container">
+		<!-- Barra de menu -->
+		<div class="menu-bar" data-fullheight>
+			<nav>
+				<a ui-sref="home"><i class="fa fa-home"></i> Inicio</a>
+				<a ui-sref="config"><i class="fa fa-cogs"></i> Configuración</a>
+				<!--<a><i class="fa fa-male"></i> FGD</a>-->
+				<a ui-sref="texts"><i class="fa fa-flag"></i> Textos</a>
+				<a ui-sref="weapons"><i class="fa fa-umbrella"></i> Armas</a>
+				<a ui-sref="sounds"><i class="fa fa-music"></i> Sonidos</a>
+			</nav>
+		</div>
+
+		<!-- Contenido -->
+		<div class="content" data-fullheight>
+			<main ui-view></main>
+		</div>
+	</div>
+</body>
+</html>

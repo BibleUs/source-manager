@@ -1,0 +1,177 @@
+<!-- OptionsController -->
+<div class="controller" data-controller="options">
+	<section>
+		<header>
+			<h2>Opciones del Juego</h2>		
+		</header>				
+
+		<form ng-submit="saveOptions()">
+			<div class="box-notification is-error" ng-class="{'visible': options.error.length > 0}">
+				{{ options.error }}
+			</div>
+
+			<div class="group">
+				<label>Directorio del Juego:</label>
+				<input class="control" ng-model="options.gameDirectory" />
+			</div>
+
+			<div class="group">
+				<label>Directorio del Motor:</label>
+				<input class="control" ng-model="options.engineDirectory" />
+			</div>
+
+			<div class="group">
+				<label>Directorio del Código Fuente:</label>
+				<input class="control" ng-model="options.sourceDirectory" />
+			</div>
+
+			<div class="group">
+				<button>Guardar</button>
+			</div>
+		</form>
+	</section>
+
+	<section>
+		<header>
+			<h2>GameInfo</h2>
+		</header>
+
+		<form ng-submit="saveGameInfo()">
+			<div class="box-notification is-error" ng-class="{'visible': gameInfo.error.length > 0}">
+				{{ gameInfo.error }}
+			</div>
+
+			<div class="columns">
+				<div class="column group">
+					<label>Nombre del Juego:</label>
+					<input class="control" ng-model="gameInfo.game" />
+				</div>
+
+				<div class="column group">
+					<label>Título:</label>
+					<input class="control" ng-model="gameInfo.title" />
+				</div>
+
+				<div class="column group">
+					<label>Logo:</label>
+					<input class="control" ng-model="gameInfo.gamelogo" />
+				</div>
+			</div>
+
+			<div class="columns">
+				<div class="column group">
+					<label>Desarrollador:</label>
+					<input class="control" ng-model="gameInfo.developer" />
+				</div>
+
+				<div class="column group">
+					<label>Página web:</label>
+					<input type="url" class="control" ng-model="gameInfo.developer_url" />
+				</div>
+
+				<div class="column group">
+					<label>Tipo:</label>
+					<select class="control" ng-model="gameInfo.type">
+						<option value="singleplayer_only">Un Jugador</option>
+						<option value="multiplayer_only">Multijugador</option>
+					</select>
+				</div>
+			</div>
+
+
+			<div class="columns">
+				<div class="column group">
+					<label>Página del manual:</label>
+					<input class="control" ng-model="gameInfo.manual" />
+				</div>
+
+				<div class="column group">
+					<label>Icono:</label>
+					<input class="control" ng-model="gameInfo.icon" />
+				</div>
+
+				<div class="column group">
+					<label>NodeGraph:</label>
+					<select class="control" ng-model="gameInfo.nodegraph">
+						<option value="0">No</option>
+						<option value="1">Sí</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="columns">
+				<div class="column group">
+					<label>GameData FGD:</label>
+					<input class="control" ng-model="gameInfo.GameData" />
+				</div>
+
+				<div class="column group">
+					<label>Instances:</label>
+					<input class="control" ng-model="gameInfo.InstancePath" />
+				</div>
+
+				<div class="column group">
+					<label>Soporte DX8:</label>
+					<select class="control" ng-model="gameInfo.SupportsDX8">
+						<option value="0">No</option>
+						<option value="1">Sí</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="columns">
+				<div class="column group">
+					<label>SteamAppId:</label>
+					<select class="control" ng-model="gameInfo.FileSystem.SteamAppId">
+						<option value="630">Alien Swarm</option>
+						<option value="220">Half-Life 2</option>
+						<option value="380">Half-Life 2: EP1</option>
+						<option value="420">Half-Life 2: EP2</option>
+						<option value="400">Portal</option>
+						<option value="620">Portal 2</option>
+						<option value="240">Counter Strike: Source</option>
+						<option value="500">Left 4 Dead</option>
+						<option value="550">Left 4 Dead 2</option>
+					</select>
+				</div>
+
+				<div class="column group">
+					<label>ToolsAppId:</label>
+					<select class="control" ng-model="gameInfo.FileSystem.ToolsAppId">
+						<option value="211">Source SDK</option>
+					</select>
+				</div>
+
+				<div class="column group">
+					<label>AdditionalContentId:</label>
+					<select class="control" ng-model="gameInfo.FileSystem.AdditionalContentId">
+						<option value="">Ninguno</option>
+						<option value="630">Alien Swarm</option>
+						<option value="220">Half-Life 2</option>
+						<option value="380">Half-Life 2: EP1</option>
+						<option value="420">Half-Life 2: EP2</option>
+						<option value="400">Portal</option>
+						<option value="620">Portal 2</option>
+						<option value="240">Counter Strike: Source</option>
+						<option value="500">Left 4 Dead</option>
+						<option value="550">Left 4 Dead 2</option>
+					</select>
+				</div>
+			</div>
+
+			<section>
+				<h3>Rutas</h3>
+
+				<ul class="search-paths">
+					<li ng-repeat="item in gameInfo.FileSystem.SearchPaths.Game">
+						{{ item }}
+					</li>
+				</ul>
+			</section>
+
+			<div class="group">
+				<button>Guardar</button>
+			</div>
+		</form>
+	</section>
+</div>
